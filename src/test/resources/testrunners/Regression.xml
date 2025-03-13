@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Open Cart Test Regression PW Suite" thread-count="5"
+       parallel="tests" verbose="4">
+
+    <listeners>
+        <!--<listener class-name=""/>-->
+    </listeners>
+
+    <test name="Open Cart Home Page Test_edge">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="tests.TC02_HomePageTest"/>
+        </classes>
+    </test>
+
+    <test name="Open Cart Login Page Test_edge">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="tests.TC01LoginPageTest"/>
+        </classes>
+    </test>
+
+</suite>
