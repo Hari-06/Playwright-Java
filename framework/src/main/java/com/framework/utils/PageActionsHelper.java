@@ -1,16 +1,16 @@
 package com.framework.utils;
 
 import com.framework.exceptions.PageActionsExceptions;
-import com.framework.factory.PlaywrightFactory;
+import com.framework.factory.PlaywrightFactoryold;
 import com.microsoft.playwright.*;
 
 import java.util.function.Supplier;
 
 public class PageActionsHelper {
 
-    private static Page page = PlaywrightFactory.getPage();
+    private static Page page = PlaywrightFactoryold.getPage();
 
-    private PageActionsHelper() {
+    public PageActionsHelper() {
     }
 
     public static Locator getLocator(String selector) {

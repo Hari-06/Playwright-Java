@@ -12,7 +12,6 @@
   <modules>
     <module>framework</module>
     <module>test-automation</module>
-    <module>test-automation</module>
   </modules>
 
   <properties>

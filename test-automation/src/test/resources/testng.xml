@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="classes" thread-count="3" verbose="4">
+    <test name="Regression">
+        <classes>
+            <class name="tests.TC01LoginPageTest"/>
+        </classes>
+    </test>
+    <test name="Sanity">
+        <classes>
+            <class name="tests.TC02_HomePageTest"/>
+        </classes>
+    </test>
+</suite>

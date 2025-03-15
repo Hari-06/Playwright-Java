@@ -1,7 +1,7 @@
 package com.framework.utils;
 
 import com.aventstack.chaintest.plugins.ChainTestListener;
-import com.framework.factory.PlaywrightFactory;
+import com.framework.factory.PlaywrightFactoryold;
 import org.testng.annotations.Listeners;
 
 import java.util.Base64;
@@ -10,7 +10,7 @@ import java.util.Base64;
 public class ScreenshotUtil {
     private ScreenshotUtil() {}
     public static void takeScreenshot() {
-        byte[] buffer = PlaywrightFactory.getPage().screenshot();
+        byte[] buffer = PlaywrightFactoryold.getPage().screenshot();
         ChainTestListener.embed(Base64.getEncoder().encodeToString(buffer),"image/png");
     }
 }
