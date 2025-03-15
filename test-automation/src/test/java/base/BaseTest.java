@@ -1,6 +1,8 @@
 package base;
 
-import com.framework.factory.PlaywrightFactory;
+import com.framework.constants.FrameworkConstants;
+import com.framework.factory.PlaywrightFactoryold;
+import com.framework.manager.PlaywrightDriver;
 import com.framework.utils.CommonUtils;
 import com.microsoft.playwright.Page;
 import org.testng.annotations.*;
@@ -12,42 +14,33 @@ import static com.framework.factory.ConfigFactory.getConfig;
 
 public class BaseTest {
 
-    PlaywrightFactory pf;
-    Page page;
-    String resultFolder;
-
-    // PlaywrightFactory.loadPlaywright();
-    //        PlaywrightFactory.loadBrowser();
-    //        PlaywrightFactory.loadBrowserContext();
+    protected PlaywrightFactoryold playwrightFactory;
+    protected Page page;
     @BeforeSuite
     public void beforeSuite() {
-        resultFolder = CommonUtils.createFolder();
+        String path = CommonUtils.createResultsFolder();
+        FrameworkConstants.setResultsFolder(path);
     }
 
-    @AfterSuite
-    public void afterSuite() {
-        PlaywrightFactory.unloadPage();
-        PlaywrightFactory.unloadBrowserContext();
-        PlaywrightFactory.unloadBrowser();
-        PlaywrightFactory.unloadPlaywright();
-    }
-
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
-        pf = new PlaywrightFactory();
-        page = pf.initBrowser();
-        PlaywrightFactory.setPage(page);
-        PlaywrightFactory.startTracing();
+        /*playwrightFactory = new PlaywrightFactoryold();
+        page = playwrightFactory.initBrowser();
+        PlaywrightFactoryold.setPage(page);
+        PlaywrightFactoryold.startTracing();*/
+        PlaywrightDriver.initDriver();
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
-        Path tracingDirectoryPath = Paths.get( resultFolder+"//"+ getConfig().tracingDirectory()+"//traces.zip");
-        PlaywrightFactory.stopTracing(tracingDirectoryPath);
-        page.context().browser().close();
-    }
-    @AfterClass
-    public void afterClass() {
+//        Path tracingDirectoryPath = Paths.get( FrameworkConstants.getResultsFolder()+"//"+ getConfig().tracingDirectory()+"//traces.zip");
+//        PlaywrightFactoryold.stopTracing(tracingDirectoryPath);
+//        page.context().browser().close();
+//        PlaywrightFactoryold.unloadPage();
+//        PlaywrightFactoryold.unloadBrowserContext();
+//        PlaywrightFactoryold.unloadBrowser();
+//        PlaywrightFactoryold.unloadPlaywright();
+        PlaywrightDriver.quitDriver();
     }
 
 }

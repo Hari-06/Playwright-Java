@@ -2,12 +2,13 @@ package tests;
 
 import base.BaseTest;
 import com.aventstack.chaintest.plugins.ChainTestListener;
-import com.company.pages.HomePage;
 import com.company.pages.LoginPage;
-import com.framework.constants.AppConstants;
-import com.framework.factory.PlaywrightFactory;
+import com.framework.constants.FrameworkConstants;
+import com.framework.factory.PlaywrightFactoryold;
+import com.framework.factory.PlaywrightManager;
 import com.framework.utils.ScreenshotUtil;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -20,24 +21,14 @@ public class TC01LoginPageTest extends BaseTest {
     private TC01LoginPageTest() {
     }
 
+
     @Test(priority = 1)
-    public void loginPageNavigationTest() {
-        loginPage = new LoginPage();
+    public void loginTest1() {
+        loginPage = new LoginPage(PlaywrightManager.getPage());
         loginPage.navigate(getConfig().url());
-        Assert.assertEquals(loginPage.getLoginPageTitle(), AppConstants.LOGIN_PAGE_TITLE);
-        ScreenshotUtil.takeScreenshot();
-    }
-
-    /*@Test(priority = 2)
-    public void forgotPwdLinkExistTest() {
-        loginPage = new LoginPage();
+        Assert.assertEquals(loginPage.getLoginPageTitle(), FrameworkConstants.LOGIN_PAGE_TITLE);
         Assert.assertTrue(loginPage.isForgotPwdLinkExist());
+        loginPage.performLogin(getConfig().username(), getConfig().password());
         ScreenshotUtil.takeScreenshot();
     }
-
-    @Test(priority = 3)
-    public void appLoginTest() {
-        loginPage = new LoginPage();
-        loginPage.performLogin(getConfig().username(), getConfig().password());
-    }*/
 }

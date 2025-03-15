@@ -9,19 +9,34 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class CommonUtils {
-    public static String createFolder(){
+    public static String createResultsFolder() {
+        String userDir = System.getProperty("user.dir");
+        Path testResultsDir = Paths.get(userDir, "Test Results");
+        if (!Files.exists(testResultsDir)) {
+            try {
+                Files.createDirectory(testResultsDir);
+            } catch (FileAlreadyExistsException e) {
+                //System.out.println("Directory already exists: " + testResultsDir);
+            } catch (IOException e) {
+                throw new RuntimeException("Unable to create Directory: " + testResultsDir);
+            }
+        }
+
         String timestamp = LocalDateTime.now()
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss"));
+        Path timestampFolder = Paths.get(testResultsDir.toString(), timestamp);
 
-        Path folder = Paths.get(timestamp);
         try {
-            Files.createDirectory(folder);
-            System.out.println("Folder created: " + folder.getFileName());
-        } catch (FileAlreadyExistsException e) {
-            System.out.println("Folder already exists: " + folder.getFileName());
+            if (!Files.exists(timestampFolder)) {
+                Files.createDirectory(timestampFolder);
+            } else {
+                System.out.println("Folder already exists: " + timestampFolder);
+            }
+            return timestampFolder.toString();
         } catch (IOException e) {
-            System.out.println("Failed to create folder: " + e.getMessage());
+            System.err.println("Failed to create timestamp folder.");
+            e.printStackTrace();
+            return null;
         }
-        return timestamp;
     }
 }

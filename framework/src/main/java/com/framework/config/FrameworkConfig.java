@@ -18,6 +18,9 @@ public interface FrameworkConfig extends Config {
     @Key("${environment}.browser")
     String browser();
 
+    @Key("${environment}.headless")
+    boolean headless();
+
     @Key("${environment}.timeout")
     int timeout();
 

@@ -1,8 +1,7 @@
 package com.company.pages;
 
-import com.framework.factory.PlaywrightFactory;
+import com.framework.factory.PlaywrightManager;
 import com.microsoft.playwright.Page;
-
 import static com.framework.utils.PageActionsHelper.*;
 
 public class LoginPage {
@@ -17,8 +16,8 @@ public class LoginPage {
     private String forgotPwdLink = "//div[@class='orangehrm-login-forgot']/p";
 
     // 2. page constructor:
-    public LoginPage() {
-        page = PlaywrightFactory.getPage();
+    public LoginPage(Page page) {
+        this.page = page;
     }
 
     public String getLoginPageTitle() {
@@ -38,7 +37,7 @@ public class LoginPage {
         waitFor(search);
         if(isVisible(search)) {
             System.out.println("user is logged in successfully....");
-            return new HomePage();
+            return new HomePage(page);
         }else {
             System.out.println("user is not logged in successfully....");
             return null;
