@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Suite" parallel="classes" thread-count="3" verbose="4">
+<suite name="Suite" parallel="tests" thread-count="3" verbose="4">
     <test name="Regression">
         <classes>
             <class name="tests.TC01LoginPageTest"/>

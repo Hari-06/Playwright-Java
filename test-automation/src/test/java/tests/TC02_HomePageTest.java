@@ -18,32 +18,34 @@ import static com.framework.factory.ConfigFactory.getConfig;
 
 @Listeners(ChainTestListener.class)
 public class TC02_HomePageTest extends BaseTest {
-    protected static LoginPage loginPage;
-    protected static HomePage  homePage;
 
     private TC02_HomePageTest() {
     }
 
     @Test(priority = 1)
     public void loginPageNavigationTest() {
+        LoginPage loginPage;
+        HomePage  homePage;
         loginPage = new LoginPage(PlaywrightManager.getPage());
         loginPage.navigate(getConfig().url());
         loginPage.getLoginPageTitle();
-        HomePage home = loginPage.performLogin(getConfig().username(), getConfig().password());
-        Assert.assertEquals(home.getHomePageTitle(), FrameworkConstants.HOME_PAGE_TITLE);
-        Assert.assertEquals(home.getHomePageURL(), "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
-        home.navigateTo("PIM");
+        homePage = loginPage.performLogin(getConfig().username(), getConfig().password());
+        Assert.assertEquals(homePage.getHomePageTitle(), FrameworkConstants.HOME_PAGE_TITLE);
+        Assert.assertEquals(homePage.getHomePageURL(), "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+        homePage.navigateTo("PIM");
         ScreenshotUtil.takeScreenshot();
     }
     @Test(priority = 2)
     public void loginPageNavigationTest2() {
+        LoginPage loginPage;
+        HomePage  homePage;
         loginPage = new LoginPage(PlaywrightManager.getPage());
         loginPage.navigate(getConfig().url());
         loginPage.getLoginPageTitle();
-        HomePage home = loginPage.performLogin(getConfig().username(), getConfig().password());
-        Assert.assertEquals(home.getHomePageTitle(), FrameworkConstants.HOME_PAGE_TITLE);
-        Assert.assertEquals(home.getHomePageURL(), "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
-        home.navigateTo("PIM");
+        homePage = loginPage.performLogin(getConfig().username(), getConfig().password());
+        Assert.assertEquals(homePage.getHomePageTitle(), FrameworkConstants.HOME_PAGE_TITLE);
+        Assert.assertEquals(homePage.getHomePageURL(), "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+        homePage.navigateTo("PIM");
         ScreenshotUtil.takeScreenshot();
     }
 
