@@ -4,11 +4,9 @@ import base.BaseTest;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import com.company.pages.LoginPage;
 import com.framework.constants.FrameworkConstants;
-import com.framework.factory.PlaywrightFactoryold;
 import com.framework.factory.PlaywrightManager;
 import com.framework.utils.ScreenshotUtil;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -22,7 +20,7 @@ public class TC01LoginPageTest extends BaseTest {
     }
 
 
-    @Test(priority = 1)
+    @Test(priority = 1 , groups = {"Regression"})
     public void loginTest1() {
         loginPage = new LoginPage(PlaywrightManager.getPage());
         loginPage.navigate(getConfig().url());

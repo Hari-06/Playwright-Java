@@ -2,43 +2,46 @@ package com.framework.utils;
 
 import com.framework.exceptions.PageActionsExceptions;
 import com.framework.factory.PlaywrightFactoryold;
+import com.framework.factory.PlaywrightManager;
 import com.microsoft.playwright.*;
 
 import java.util.function.Supplier;
 
 public class PageActionsHelper {
 
-    private static Page page = PlaywrightFactoryold.getPage();
+    public static Page getPage() {
+        return PlaywrightManager.getPage();
+    }
 
     public PageActionsHelper() {
     }
 
     public static Locator getLocator(String selector) {
-        return page.locator(selector);
+        return getPage().locator(selector);
     }
 
     public static Locator getLocatorByText(String text) {
-        return page.locator("text=" + text);
+        return getPage().locator("text=" + text);
     }
 
     public static Locator getVisibleLocatorByText(String text) {
-        return page.locator("text=" + text + ":visible");
+        return getPage().locator("text=" + text + ":visible");
     }
 
     public static Locator getNthLocator(String selector, int index) {
-        return page.locator(selector + ":nth-of-type(" + (index + 1) + ")");
+        return getPage().locator(selector + ":nth-of-type(" + (index + 1) + ")");
     }
 
     public static Locator getLocatorByCss(String selector) {
-        return page.locator(selector);
+        return getPage().locator(selector);
     }
 
     public static Locator getLocatorByXPath(String xpath) {
-        return page.locator(xpath);
+        return getPage().locator(xpath);
     }
 
     public static Locator getLocatorByRole(String role) {
-        return page.locator("role=" + role);
+        return getPage().locator("role=" + role);
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------
@@ -64,7 +67,7 @@ public class PageActionsHelper {
     }
 
     public static void click(String selector) {
-        Locator element = page.locator(selector);
+        Locator element = getPage().locator(selector);
         executeAction(element::click, "Click failed. Element not found: " + selector);
     }
 
@@ -142,27 +145,27 @@ public class PageActionsHelper {
 
     public static void waitForRequest(String urlPattern) {
         try {
-            page.onRequest(request -> {
+            getPage().onRequest(request -> {
                 if (request.url().contains(urlPattern)) {
                     throw new PageActionsExceptions("Request matching the pattern: " + urlPattern + " was made.");
                 }
             });
-            page.waitForTimeout(5000);
+            getPage().waitForTimeout(5000);
         } catch (TimeoutError e) {
             throw new PageActionsExceptions("Network request with URL pattern " + urlPattern + " did not complete.");
         }
     }
 
     public static void acceptAlert() {
-        page.onDialog(Dialog::accept);
+        getPage().onDialog(Dialog::accept);
     }
 
     public static void dismissAlert() {
-        page.onDialog(Dialog::dismiss);
+        getPage().onDialog(Dialog::dismiss);
     }
 
     public static void handlePopup() {
-        page.onPopup(Page::close);
+        getPage().onPopup(Page::close);
     }
 
 }
