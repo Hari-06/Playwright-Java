@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Sample Suite" >
+    <test name="Test1" thread-count="3" parallel="methods">
+        <classes>
+            <class name="tests.TC01LoginPageTest" />
+            <!--<class name="tests.TC02_HomePageTest" />-->
+        </classes>
+    </test>
+</suite>
