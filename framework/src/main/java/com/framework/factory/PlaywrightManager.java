@@ -1,64 +1,52 @@
 package com.framework.factory;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserContext;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
-
-import java.util.Objects;
+import com.microsoft.playwright.*;
 
 public class PlaywrightManager {
-    private PlaywrightManager() {}
+    private static final ThreadLocal<Playwright> tlPlaywright = new ThreadLocal<>();
+    private static final ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
+    private static final ThreadLocal<BrowserContext> tlContext = new ThreadLocal<>();
+    private static final ThreadLocal<Page> tlPage = new ThreadLocal<>();
 
-    private static ThreadLocal<Playwright> playwright = new ThreadLocal<>();
-    private static ThreadLocal<Browser> browser = new ThreadLocal<>();
-    private static ThreadLocal<BrowserContext> context = new ThreadLocal<>();
-    private static ThreadLocal<Page> page = new ThreadLocal<>();
+    private PlaywrightManager() {
+    }
 
     public static Playwright getPlaywright() {
-        return playwright.get();
+        return tlPlaywright.get();
+    }
+
+    public static void setPlaywright(Playwright playwright) {
+        tlPlaywright.set(playwright);
     }
 
     public static Browser getBrowser() {
-        return browser.get();
+        return tlBrowser.get();
+    }
+
+    public static void setBrowser(Browser b) {
+        tlBrowser.set(b);
     }
 
     public static BrowserContext getContext() {
-        return context.get();
+        return tlContext.get();
+    }
+
+    public static void setContext(BrowserContext browserContext) {
+        tlContext.set(browserContext);
     }
 
     public static Page getPage() {
-        return page.get();
+        return tlPage.get();
     }
 
-    static void setPlaywright(Playwright instance) {
-        if (Objects.nonNull(instance)) {
-            playwright.set(instance);
-        }
+    public static void setPage(Page page) {
+        tlPage.set(page);
     }
 
-    static void setBrowser(Browser instance) {
-        if (Objects.nonNull(instance)) {
-            browser.set(instance);
-        }
-    }
-
-    static void setContext(BrowserContext instance) {
-        if (Objects.nonNull(instance)) {
-            context.set(instance);
-        }
-    }
-
-    static void setPage(Page instance) {
-        if (Objects.nonNull(instance)) {
-            page.set(instance);
-        }
-    }
-
-    public static void unload() {
-        playwright.remove();
-        browser.remove();
-        context.remove();
-        page.remove();
+    public static void cleanup() {
+        tlPage.remove();
+        tlContext.remove();
+        tlBrowser.remove();
+        tlPlaywright.remove();
     }
 }

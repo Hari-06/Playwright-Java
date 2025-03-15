@@ -10,7 +10,7 @@ import static com.framework.factory.PlaywrightFactoryold.setPage;
 public class PlaywrightDriver {
     private PlaywrightDriver() {}
 
-    public static void initDriver() {
+    /*public static void initDriver() {
         if (PlaywrightManager.getPage() == null) {
             try {
                 setPage(PlaywrightFactory.initBrowser());
@@ -28,5 +28,5 @@ public class PlaywrightDriver {
             PlaywrightManager.getPlaywright().close();
             PlaywrightManager.unload();
         }
-    }
+    }*/
 }

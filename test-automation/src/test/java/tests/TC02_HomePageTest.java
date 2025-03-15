@@ -22,11 +22,11 @@ public class TC02_HomePageTest extends BaseTest {
     private TC02_HomePageTest() {
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, groups = {"Sanity"})
     public void loginPageNavigationTest() {
         LoginPage loginPage;
         HomePage  homePage;
-        loginPage = new LoginPage(PlaywrightManager.getPage());
+        loginPage = new LoginPage(getPage());
         loginPage.navigate(getConfig().url());
         loginPage.getLoginPageTitle();
         homePage = loginPage.performLogin(getConfig().username(), getConfig().password());
@@ -35,11 +35,11 @@ public class TC02_HomePageTest extends BaseTest {
         homePage.navigateTo("PIM");
         ScreenshotUtil.takeScreenshot();
     }
-    @Test(priority = 2)
+    @Test(priority = 2,groups = {"Sanity"})
     public void loginPageNavigationTest2() {
         LoginPage loginPage;
         HomePage  homePage;
-        loginPage = new LoginPage(PlaywrightManager.getPage());
+        loginPage = new LoginPage(getPage());
         loginPage.navigate(getConfig().url());
         loginPage.getLoginPageTitle();
         homePage = loginPage.performLogin(getConfig().username(), getConfig().password());

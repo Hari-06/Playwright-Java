@@ -1,6 +1,5 @@
 package com.company.pages;
 
-import com.framework.factory.PlaywrightManager;
 import com.microsoft.playwright.Page;
 import static com.framework.utils.PageActionsHelper.*;
 

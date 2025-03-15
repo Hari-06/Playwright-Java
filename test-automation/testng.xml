@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Suite" parallel="tests" thread-count="3" verbose="4">
-    <test name="Regression">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Main Suite" parallel="tests" thread-count="3" verbose="2">
+
+    <!-- Regression Test Group -->
+    <test name="Regression Tests">
         <classes>
             <class name="tests.TC01LoginPageTest"/>
         </classes>
     </test>
-    <test name="Sanity">
+
+    <!-- Sanity Test Group -->
+    <test name="Sanity Tests">
         <classes>
             <class name="tests.TC02_HomePageTest"/>
         </classes>
     </test>
+
+<!--    <test name="Regression">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Regression"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--    </test>-->
+
 </suite>
