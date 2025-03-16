@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class CommonUtils {
+public class CommonUtil {
     public static String createResultsFolder() {
         String userDir = System.getProperty("user.dir");
         Path testResultsDir = Paths.get(userDir, "Test Results");

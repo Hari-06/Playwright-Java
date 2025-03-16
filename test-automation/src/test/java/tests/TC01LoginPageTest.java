@@ -10,6 +10,8 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.util.Map;
+
 import static com.framework.factory.ConfigFactory.getConfig;
 
 @Listeners(ChainTestListener.class)
@@ -19,14 +21,15 @@ public class TC01LoginPageTest extends BaseTest {
     private TC01LoginPageTest() {
     }
 
-
-    @Test(priority = 1 , groups = {"Regression"})
-    public void loginTest1() {
+    @Test()
+    public void loginTest1(Map<String,String> data) {
+        String username = data.get("username");
+        String password = data.get("password");
         loginPage = new LoginPage(PlaywrightManager.getPage());
         loginPage.navigate(getConfig().url());
         Assert.assertEquals(loginPage.getLoginPageTitle(), FrameworkConstants.LOGIN_PAGE_TITLE);
         Assert.assertTrue(loginPage.isForgotPwdLinkExist());
-        loginPage.performLogin(getConfig().username(), getConfig().password());
+        loginPage.performLogin(username, password);
         ScreenshotUtil.takeScreenshot();
     }
 }

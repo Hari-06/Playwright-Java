@@ -1,4 +1,5 @@
 /Test Results/
+/test-automation/src/test/resources/testManager/
 .idea/
 /target/
 *.log
@@ -31,3 +32,4 @@ target/
 ### Mac OS ###
 .DS_Store
 /.idea/
+/test-automation/src/test/resources/testManager/
