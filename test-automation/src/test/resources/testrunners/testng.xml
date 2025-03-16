@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Main Suite" parallel="tests" thread-count="3" verbose="2">
+<suite name="Main Suite" parallel="tests" data-provider-thread-count="3" verbose="2">
+
+    <listeners>
+        <listener class-name="com.framework.listeners.MethodInterceptor" />
+        <listener class-name="com.framework.listeners.AnnotationTransformer" />
+    </listeners>
 
     <!-- Regression Test Group -->
     <test name="Regression Tests">
@@ -16,7 +21,7 @@
         </classes>
     </test>
 
-<!--    <test name="Regression">-->
+    <!--    <test name="Regression">-->
 <!--        <groups>-->
 <!--            <run>-->
 <!--                <include name="Regression"/>-->

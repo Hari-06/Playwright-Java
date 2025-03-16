@@ -3,14 +3,16 @@ package base;
 import com.framework.constants.FrameworkConstants;
 import com.framework.factory.PlaywrightFactory;
 import com.framework.factory.PlaywrightManager;
-import com.framework.utils.CommonUtils;
+import com.framework.utils.CommonUtil;
 import com.microsoft.playwright.Page;
 import org.testng.annotations.*;
+
+import java.util.Map;
 
 public class BaseTest {
     @BeforeSuite
     public void beforeSuite() {
-        String path = CommonUtils.createResultsFolder();
+        String path = CommonUtil.createResultsFolder();
         FrameworkConstants.setResultsFolder(path);
     }
     @BeforeMethod
