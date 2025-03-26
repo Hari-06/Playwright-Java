@@ -14,9 +14,13 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
-    - name: Build & Install
-      run: mvn -B install -D skipTests --no-transfer-progress
+    - name: Build Framework
+      run: mvn -B install -DskipTests --no-transfer-progress -pl framework
+    - name: Build Test Automation
+      run: mvn -B install -DskipTests --no-transfer-progress -pl test-automation -am
     - name: Ensure browsers are installed
       run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
-    - name: Run tests
+      working-directory: test-automation
+    - name: Run Tests
       run: mvn test
+      working-directory: test-automation
