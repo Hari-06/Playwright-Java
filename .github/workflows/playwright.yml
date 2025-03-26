@@ -37,15 +37,3 @@ jobs:
     - name: Run TestNG tests
       run: mvn test -Dsurefire.suiteXmlFiles=testng.xml
       working-directory: test-automation
-
-
-    - name: Upload test results
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: target/surefire-reports
-      
-
-    - name: Generate Playwright report
-      run: |
-        npx playwright show-report
