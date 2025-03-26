@@ -32,3 +32,4 @@ target/
 ### Mac OS ###
 .DS_Store
 /.idea/
+/test-automation/Test Results/
