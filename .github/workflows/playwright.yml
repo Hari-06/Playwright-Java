@@ -30,6 +30,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
+    - name: Build all modules
+      run: mvn clean install -DskipTests
+
     - name: Install Maven dependencies
       run: mvn install -DskipTests
       working-directory: test-automation
