@@ -46,13 +46,6 @@ jobs:
         path: target/surefire-reports
       
 
-    - name: Upload Playwright trace
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: playwright-trace
-        path: trace.zip
-
     - name: Generate Playwright report
       run: |
         npx playwright show-report
