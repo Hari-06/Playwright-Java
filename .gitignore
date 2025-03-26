@@ -32,4 +32,3 @@ target/
 ### Mac OS ###
 .DS_Store
 /.idea/
-/test-automation/src/test/resources/testManager/

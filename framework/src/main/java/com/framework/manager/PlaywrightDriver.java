@@ -1,14 +1,8 @@
 package com.framework.manager;
 
-import com.framework.exceptions.FrameworkException;
-import com.framework.factory.PlaywrightFactory;
-import com.framework.factory.PlaywrightManager;
-import com.microsoft.playwright.Page;
-
-import static com.framework.factory.PlaywrightFactoryold.setPage;
-
 public class PlaywrightDriver {
-    private PlaywrightDriver() {}
+  private PlaywrightDriver() {
+  }
 
     /*public static void initDriver() {
         if (PlaywrightManager.getPage() == null) {
