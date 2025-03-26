@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Open Cart Test Regression PW Suite" thread-count="5"
+<suite name="Open Cart Test Regression PW Suite"
        parallel="tests" verbose="4">
 
     <listeners>
