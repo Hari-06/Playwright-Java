@@ -28,12 +28,22 @@ public class PlaywrightFactory {
   }
 
   private static Browser createBrowser(Playwright playwright, String browserName) {
-    BrowserType browserType = switch (browserName.toLowerCase()) {
-      case "chromium", "chrome", "edge" -> playwright.chromium();
-      case "firefox" -> playwright.firefox();
-      case "webkit" -> playwright.webkit();
-      default -> throw new IllegalArgumentException("Invalid browser: " + browserName);
-    };
+    BrowserType browserType;
+    switch (browserName.toLowerCase()) {
+      case "chromium":
+      case "chrome":
+      case "edge":
+        browserType = playwright.chromium();
+        break;
+      case "firefox":
+        browserType = playwright.firefox();
+        break;
+      case "webkit":
+        browserType = playwright.webkit();
+        break;
+      default:
+        throw new IllegalArgumentException("Invalid browser: " + browserName);
+    }
     return browserType.launch(createLaunchOptions());
   }
 

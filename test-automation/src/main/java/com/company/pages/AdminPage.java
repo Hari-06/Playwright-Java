@@ -10,3 +10,4 @@ public class AdminPage {
     this.page = page;
   }
 }
+
